@@ -1,1 +1,165 @@
+# Relations and Functions
+
+In mathematics and computer science, functions and relations play a crucial role in structuring information and defining transformations between sets. This lesson explores the concepts of relations, functions, and their properties, including invertibility and isomorphism.
+
+# Relations
+
+## What is a Relation?
+
+A **relation** is a set of ordered pairs where elements from one set are associated with elements from another set.
+
+For example, if we have two sets:
+
+-   $A = \{1, 2, 3\}$
+-   $B = \{a, b, c\}$
+
+A relation between them could be:
+
+$$
+R = \{(1, a), (2, b), (3, c)\}
+$$
+
+## Relations and Cartesian Products
+
+A relation can be understood through the **Cartesian product** of two sets. The Cartesian product $A \times B$ consists of all possible pairs:
+
+$$
+A \times B = \{(1, a), (1, b), (1, c), (2, a), (2, b), (2, c), (3, a), (3, b), (3, c)\}
+$$
+
+A relation is simply a subset of this Cartesian product.
+
 # Functions
+
+## What is a Function?
+
+A **function** is a special type of relation that has a well-defined **directionality**: each input from the **domain** is mapped to exactly one output in the **codomain**.
+
+## Key Properties of Functions
+
+-   A function **must** assign exactly **one** output to each input.
+-   The **domain** is the set of all possible inputs.
+-   The **codomain** is the set of possible outputs (though not necessarily all elements in the codomain are used).
+-   The actual values a function maps to are called the **image** of the function.
+
+For example, if we define a function $f: A \to B$ as:
+
+$$
+f(x) = x^2, \quad A = \{1, 2, 3\}, \quad B = \{1, 4, 9, 10\}
+$$
+
+Then:
+
+$$
+f(1) = 1, \quad f(2) = 4, \quad f(3) = 9
+$$
+
+## Total Functions vs. Partial Functions
+
+-   A **total function** maps **every** element of the domain to an element in the codomain.
+-   A **partial function** may leave some elements of the domain unmapped.
+
+# Invertibility of Functions
+
+## When is a Function Invertible?
+
+A function is **invertible** if there exists another function that can reverse its effect. That is, given an output, we can determine the unique input that produced it.
+
+**Example:** If $f(x) = x + 2$, the inverse function is $g(x) = x - 2$, because applying $g$ after $f$ returns the original input:
+
+$$
+g(f(x)) = (x + 2) - 2 = x
+$$
+
+Not all functions are invertible! A function must be **bijective** (both injective and surjective) to have an inverse.
+
+# Isomorphism: A Special Kind of Invertibility
+
+## What is an Isomorphism?
+
+An **isomorphism** is a function that has a perfect inverse—it maps one set to another in a way that preserves structure.
+
+Given two functions:
+
+-   $f: A \to B$
+-   $g: B \to A$
+
+$f$ and $g$ are isomorphic if:
+
+$$
+g \circ f = id_A \quad \text{and} \quad f \circ g = id_B
+$$
+
+where $id_A$ and $id_B$ are identity functions that return their input unchanged.
+
+## Why are Functions Non-Isomorphic?
+
+There are two main reasons why a function might not be an isomorphism:
+
+### 1. Loss of Information: Non-Injective Functions
+
+A function is **not injective** if multiple inputs map to the same output (collapsing elements).
+
+**Example:** $$
+f(x) = x^2
+$$
+
+Here, both $f(2) = 4$ and $f(-2) = 4$, so the function is not invertible because we lose information about whether the input was positive or negative.
+
+-   **Opposite Property:** A function is **injective** (one-to-one) if no two inputs map to the same output.
+-   **Related concept:** **Monomorphism (monic functions).**
+
+### 2. Incomplete Coverage: Non-Surjective Functions
+
+A function is **not surjective** if it does not cover the entire codomain.
+
+**Example:** Suppose $f: \mathbb{R} \to \mathbb{R}$ is defined by:
+
+$$
+f(x) = e^x
+$$
+
+Since the function never produces negative numbers, it is not surjective onto $\mathbb{R}$.
+
+-   **Opposite Property:** A function is **surjective** (onto) if it covers the entire codomain.
+-   **Related concept:** **Epimorphism (epic functions).**
+
+# Bijections and Isomorphism
+
+A function is:
+
+-   **Injective** if it preserves uniqueness (one-to-one).
+-   **Surjective** if it covers the entire codomain (onto).
+-   **Bijective** if it is both injective and surjective, meaning it has a perfect inverse.
+
+## Why is a Bijective Function an Isomorphism?
+
+A **bijective function** is an **isomorphism** because it:
+
+1.  Preserves uniqueness (no collapsing).
+2.  Fully maps the codomain (no gaps).
+3.  Has an inverse function that undoes its effect.
+
+**Example:**\
+The function $f(x) = x + 3$ is bijective because:
+
+-   It is injective (each $x$ gives a unique output).
+-   It is surjective (covers all real numbers).
+-   It has an inverse $g(x) = x - 3$, making it an isomorphism.
+
+# Summary and Key Takeaways
+
+| Property        | Definition                                             | Opposite Property                  | Related Concept   |
+|------------------|------------------|--------------------|------------------|
+| **Relation**    | A set of ordered pairs                                 | –                                  | Cartesian Product |
+| **Function**    | A relation where each input maps to exactly one output | –                                  | –                 |
+| **Injective**   | No two inputs map to the same output                   | Non-injective (collapses elements) | Monomorphism      |
+| **Surjective**  | Covers the entire codomain                             | Non-surjective (leaves gaps)       | Epimorphism       |
+| **Bijective**   | Both injective and surjective                          | Non-bijective                      | Isomorphism       |
+| **Isomorphism** | A function with a perfect inverse                      | Non-isomorphic                     | –                 |
+
+# Conclusion
+
+Understanding functions and relations helps in many fields, from mathematics to computer science. Knowing when a function is invertible, injective, or surjective allows us to determine how information is preserved, mapped, and structured.
+
+By mastering these concepts, you can better analyze transformations, abstractions, and models in various domains.

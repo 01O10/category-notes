@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>category - 3&nbsp; Functions</title>
+<title>category - 3&nbsp; Relations and Functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./references.html" rel="next">
-<link href="./fundamentals.html" rel="prev">
+<link href="./category_theory.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -62,6 +62,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -74,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./fundamentals.html">fundamentals.html</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./fundamentals.html">Fundamentals</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relations and Functions</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -108,19 +110,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Understanding Category Theory, Type Theory, and Logic</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">fundamentals.html</span></a>
+ <span class="menu-text">Fundamentals</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -128,8 +124,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./category_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Associativity and its Role in Categories</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relations and Functions</span></span></a>
   </div>
 </li>
       </ul>
@@ -146,14 +148,49 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#relations" id="toc-relations" class="nav-link active" data-scroll-target="#relations"><span class="header-section-number">4</span> Relations</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-relation" id="toc-what-is-a-relation" class="nav-link" data-scroll-target="#what-is-a-relation"><span class="header-section-number">4.1</span> What is a Relation?</a></li>
+  <li><a href="#relations-and-cartesian-products" id="toc-relations-and-cartesian-products" class="nav-link" data-scroll-target="#relations-and-cartesian-products"><span class="header-section-number">4.2</span> Relations and Cartesian Products</a></li>
+  </ul></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">5</span> Functions</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-function" id="toc-what-is-a-function" class="nav-link" data-scroll-target="#what-is-a-function"><span class="header-section-number">5.1</span> What is a Function?</a></li>
+  <li><a href="#key-properties-of-functions" id="toc-key-properties-of-functions" class="nav-link" data-scroll-target="#key-properties-of-functions"><span class="header-section-number">5.2</span> Key Properties of Functions</a></li>
+  <li><a href="#total-functions-vs.-partial-functions" id="toc-total-functions-vs.-partial-functions" class="nav-link" data-scroll-target="#total-functions-vs.-partial-functions"><span class="header-section-number">5.3</span> Total Functions vs.&nbsp;Partial Functions</a></li>
+  </ul></li>
+  <li><a href="#invertibility-of-functions" id="toc-invertibility-of-functions" class="nav-link" data-scroll-target="#invertibility-of-functions"><span class="header-section-number">6</span> Invertibility of Functions</a>
+  <ul class="collapse">
+  <li><a href="#when-is-a-function-invertible" id="toc-when-is-a-function-invertible" class="nav-link" data-scroll-target="#when-is-a-function-invertible"><span class="header-section-number">6.1</span> When is a Function Invertible?</a></li>
+  </ul></li>
+  <li><a href="#isomorphism-a-special-kind-of-invertibility" id="toc-isomorphism-a-special-kind-of-invertibility" class="nav-link" data-scroll-target="#isomorphism-a-special-kind-of-invertibility"><span class="header-section-number">7</span> Isomorphism: A Special Kind of Invertibility</a>
+  <ul class="collapse">
+  <li><a href="#what-is-an-isomorphism" id="toc-what-is-an-isomorphism" class="nav-link" data-scroll-target="#what-is-an-isomorphism"><span class="header-section-number">7.1</span> What is an Isomorphism?</a></li>
+  <li><a href="#why-are-functions-non-isomorphic" id="toc-why-are-functions-non-isomorphic" class="nav-link" data-scroll-target="#why-are-functions-non-isomorphic"><span class="header-section-number">7.2</span> Why are Functions Non-Isomorphic?</a>
+  <ul class="collapse">
+  <li><a href="#loss-of-information-non-injective-functions" id="toc-loss-of-information-non-injective-functions" class="nav-link" data-scroll-target="#loss-of-information-non-injective-functions"><span class="header-section-number">7.2.1</span> 1. Loss of Information: Non-Injective Functions</a></li>
+  <li><a href="#incomplete-coverage-non-surjective-functions" id="toc-incomplete-coverage-non-surjective-functions" class="nav-link" data-scroll-target="#incomplete-coverage-non-surjective-functions"><span class="header-section-number">7.2.2</span> 2. Incomplete Coverage: Non-Surjective Functions</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#bijections-and-isomorphism" id="toc-bijections-and-isomorphism" class="nav-link" data-scroll-target="#bijections-and-isomorphism"><span class="header-section-number">8</span> Bijections and Isomorphism</a>
+  <ul class="collapse">
+  <li><a href="#why-is-a-bijective-function-an-isomorphism" id="toc-why-is-a-bijective-function-an-isomorphism" class="nav-link" data-scroll-target="#why-is-a-bijective-function-an-isomorphism"><span class="header-section-number">8.1</span> Why is a Bijective Function an Isomorphism?</a></li>
+  </ul></li>
+  <li><a href="#summary-and-key-takeaways" id="toc-summary-and-key-takeaways" class="nav-link" data-scroll-target="#summary-and-key-takeaways"><span class="header-section-number">9</span> Summary and Key Takeaways</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10</span> Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relations and Functions</span></h1>
 </div>
 
 
@@ -168,8 +205,209 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>In mathematics and computer science, functions and relations play a crucial role in structuring information and defining transformations between sets. This lesson explores the concepts of relations, functions, and their properties, including invertibility and isomorphism.</p>
+<section id="relations" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Relations</h1>
+<section id="what-is-a-relation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="what-is-a-relation"><span class="header-section-number">4.1</span> What is a Relation?</h2>
+<p>A <strong>relation</strong> is a set of ordered pairs where elements from one set are associated with elements from another set.</p>
+<p>For example, if we have two sets:</p>
+<ul>
+<li><span class="math inline">\(A = \{1, 2, 3\}\)</span></li>
+<li><span class="math inline">\(B = \{a, b, c\}\)</span></li>
+</ul>
+<p>A relation between them could be:</p>
+<p><span class="math display">\[
+R = \{(1, a), (2, b), (3, c)\}
+\]</span></p>
+</section>
+<section id="relations-and-cartesian-products" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="relations-and-cartesian-products"><span class="header-section-number">4.2</span> Relations and Cartesian Products</h2>
+<p>A relation can be understood through the <strong>Cartesian product</strong> of two sets. The Cartesian product <span class="math inline">\(A \times B\)</span> consists of all possible pairs:</p>
+<p><span class="math display">\[
+A \times B = \{(1, a), (1, b), (1, c), (2, a), (2, b), (2, c), (3, a), (3, b), (3, c)\}
+\]</span></p>
+<p>A relation is simply a subset of this Cartesian product.</p>
+</section>
+</section>
+<section id="functions" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Functions</h1>
+<section id="what-is-a-function" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="what-is-a-function"><span class="header-section-number">5.1</span> What is a Function?</h2>
+<p>A <strong>function</strong> is a special type of relation that has a well-defined <strong>directionality</strong>: each input from the <strong>domain</strong> is mapped to exactly one output in the <strong>codomain</strong>.</p>
+</section>
+<section id="key-properties-of-functions" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="key-properties-of-functions"><span class="header-section-number">5.2</span> Key Properties of Functions</h2>
+<ul>
+<li>A function <strong>must</strong> assign exactly <strong>one</strong> output to each input.</li>
+<li>The <strong>domain</strong> is the set of all possible inputs.</li>
+<li>The <strong>codomain</strong> is the set of possible outputs (though not necessarily all elements in the codomain are used).</li>
+<li>The actual values a function maps to are called the <strong>image</strong> of the function.</li>
+</ul>
+<p>For example, if we define a function <span class="math inline">\(f: A \to B\)</span> as:</p>
+<p><span class="math display">\[
+f(x) = x^2, \quad A = \{1, 2, 3\}, \quad B = \{1, 4, 9, 10\}
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[
+f(1) = 1, \quad f(2) = 4, \quad f(3) = 9
+\]</span></p>
+</section>
+<section id="total-functions-vs.-partial-functions" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="total-functions-vs.-partial-functions"><span class="header-section-number">5.3</span> Total Functions vs.&nbsp;Partial Functions</h2>
+<ul>
+<li>A <strong>total function</strong> maps <strong>every</strong> element of the domain to an element in the codomain.</li>
+<li>A <strong>partial function</strong> may leave some elements of the domain unmapped.</li>
+</ul>
+</section>
+</section>
+<section id="invertibility-of-functions" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Invertibility of Functions</h1>
+<section id="when-is-a-function-invertible" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="when-is-a-function-invertible"><span class="header-section-number">6.1</span> When is a Function Invertible?</h2>
+<p>A function is <strong>invertible</strong> if there exists another function that can reverse its effect. That is, given an output, we can determine the unique input that produced it.</p>
+<p><strong>Example:</strong> If <span class="math inline">\(f(x) = x + 2\)</span>, the inverse function is <span class="math inline">\(g(x) = x - 2\)</span>, because applying <span class="math inline">\(g\)</span> after <span class="math inline">\(f\)</span> returns the original input:</p>
+<p><span class="math display">\[
+g(f(x)) = (x + 2) - 2 = x
+\]</span></p>
+<p>Not all functions are invertible! A function must be <strong>bijective</strong> (both injective and surjective) to have an inverse.</p>
+</section>
+</section>
+<section id="isomorphism-a-special-kind-of-invertibility" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Isomorphism: A Special Kind of Invertibility</h1>
+<section id="what-is-an-isomorphism" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="what-is-an-isomorphism"><span class="header-section-number">7.1</span> What is an Isomorphism?</h2>
+<p>An <strong>isomorphism</strong> is a function that has a perfect inverse—it maps one set to another in a way that preserves structure.</p>
+<p>Given two functions:</p>
+<ul>
+<li><span class="math inline">\(f: A \to B\)</span></li>
+<li><span class="math inline">\(g: B \to A\)</span></li>
+</ul>
+<p><span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are isomorphic if:</p>
+<p><span class="math display">\[
+g \circ f = id_A \quad \text{and} \quad f \circ g = id_B
+\]</span></p>
+<p>where <span class="math inline">\(id_A\)</span> and <span class="math inline">\(id_B\)</span> are identity functions that return their input unchanged.</p>
+</section>
+<section id="why-are-functions-non-isomorphic" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="why-are-functions-non-isomorphic"><span class="header-section-number">7.2</span> Why are Functions Non-Isomorphic?</h2>
+<p>There are two main reasons why a function might not be an isomorphism:</p>
+<section id="loss-of-information-non-injective-functions" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="loss-of-information-non-injective-functions"><span class="header-section-number">7.2.1</span> 1. Loss of Information: Non-Injective Functions</h3>
+<p>A function is <strong>not injective</strong> if multiple inputs map to the same output (collapsing elements).</p>
+<p><strong>Example:</strong> <span class="math display">\[
+f(x) = x^2
+\]</span></p>
+<p>Here, both <span class="math inline">\(f(2) = 4\)</span> and <span class="math inline">\(f(-2) = 4\)</span>, so the function is not invertible because we lose information about whether the input was positive or negative.</p>
+<ul>
+<li><strong>Opposite Property:</strong> A function is <strong>injective</strong> (one-to-one) if no two inputs map to the same output.</li>
+<li><strong>Related concept:</strong> <strong>Monomorphism (monic functions).</strong></li>
+</ul>
+</section>
+<section id="incomplete-coverage-non-surjective-functions" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="incomplete-coverage-non-surjective-functions"><span class="header-section-number">7.2.2</span> 2. Incomplete Coverage: Non-Surjective Functions</h3>
+<p>A function is <strong>not surjective</strong> if it does not cover the entire codomain.</p>
+<p><strong>Example:</strong> Suppose <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> is defined by:</p>
+<p><span class="math display">\[
+f(x) = e^x
+\]</span></p>
+<p>Since the function never produces negative numbers, it is not surjective onto <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<ul>
+<li><strong>Opposite Property:</strong> A function is <strong>surjective</strong> (onto) if it covers the entire codomain.</li>
+<li><strong>Related concept:</strong> <strong>Epimorphism (epic functions).</strong></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="bijections-and-isomorphism" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Bijections and Isomorphism</h1>
+<p>A function is:</p>
+<ul>
+<li><strong>Injective</strong> if it preserves uniqueness (one-to-one).</li>
+<li><strong>Surjective</strong> if it covers the entire codomain (onto).</li>
+<li><strong>Bijective</strong> if it is both injective and surjective, meaning it has a perfect inverse.</li>
+</ul>
+<section id="why-is-a-bijective-function-an-isomorphism" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="why-is-a-bijective-function-an-isomorphism"><span class="header-section-number">8.1</span> Why is a Bijective Function an Isomorphism?</h2>
+<p>A <strong>bijective function</strong> is an <strong>isomorphism</strong> because it:</p>
+<ol type="1">
+<li>Preserves uniqueness (no collapsing).</li>
+<li>Fully maps the codomain (no gaps).</li>
+<li>Has an inverse function that undoes its effect.</li>
+</ol>
+<p><strong>Example:</strong><br>
+The function <span class="math inline">\(f(x) = x + 3\)</span> is bijective because:</p>
+<ul>
+<li>It is injective (each <span class="math inline">\(x\)</span> gives a unique output).</li>
+<li>It is surjective (covers all real numbers).</li>
+<li>It has an inverse <span class="math inline">\(g(x) = x - 3\)</span>, making it an isomorphism.</li>
+</ul>
+</section>
+</section>
+<section id="summary-and-key-takeaways" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Summary and Key Takeaways</h1>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 27%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Definition</th>
+<th>Opposite Property</th>
+<th>Related Concept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Relation</strong></td>
+<td>A set of ordered pairs</td>
+<td>–</td>
+<td>Cartesian Product</td>
+</tr>
+<tr class="even">
+<td><strong>Function</strong></td>
+<td>A relation where each input maps to exactly one output</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr class="odd">
+<td><strong>Injective</strong></td>
+<td>No two inputs map to the same output</td>
+<td>Non-injective (collapses elements)</td>
+<td>Monomorphism</td>
+</tr>
+<tr class="even">
+<td><strong>Surjective</strong></td>
+<td>Covers the entire codomain</td>
+<td>Non-surjective (leaves gaps)</td>
+<td>Epimorphism</td>
+</tr>
+<tr class="odd">
+<td><strong>Bijective</strong></td>
+<td>Both injective and surjective</td>
+<td>Non-bijective</td>
+<td>Isomorphism</td>
+</tr>
+<tr class="even">
+<td><strong>Isomorphism</strong></td>
+<td>A function with a perfect inverse</td>
+<td>Non-isomorphic</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="conclusion" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Conclusion</h1>
+<p>Understanding functions and relations helps in many fields, from mathematics to computer science. Knowing when a function is invertible, injective, or surjective allows us to determine how information is preserved, mapped, and structured.</p>
+<p>By mastering these concepts, you can better analyze transformations, abstractions, and models in various domains.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -407,8 +645,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./fundamentals.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">fundamentals.html</span>
+      <a href="./category_theory.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Associativity and its Role in Categories</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
