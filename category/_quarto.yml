@@ -1,0 +1,26 @@
+project:
+  type: book
+
+book:
+  title: "category"
+  author: "Norah Jones"
+  date: "2/10/2025"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - part: fundamentals.qmd
+      chapters: 
+      - functions.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
