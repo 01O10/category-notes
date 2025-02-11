@@ -67,56 +67,49 @@
     "href": "category_theory.html",
     "title": "2  Associativity and its Role in Categories",
     "section": "",
-    "text": "3 Programming and Category Theory\nCategory theory offers a framework for thinking about mathematical structures and their relationships in an abstract, high-level way. By focusing on morphisms and their composition, we can study the properties of objects without needing to understand their internal details. This approach to abstraction leads to new insights into mathematics and computation, ultimately enabling a deeper understanding of how various structures are interconnected."
+    "text": "3 Associativity and its Role in Categories"
   },
   {
-    "objectID": "category_theory.html#is-it-possible-to-have-non-associative-theories",
-    "href": "category_theory.html#is-it-possible-to-have-non-associative-theories",
+    "objectID": "category_theory.html#can-we-have-non-associative-theories",
+    "href": "category_theory.html#can-we-have-non-associative-theories",
     "title": "2  Associativity and its Role in Categories",
-    "section": "2.1 Is it Possible to Have Non-Associative Theories?",
-    "text": "2.1 Is it Possible to Have Non-Associative Theories?\nIn category theory, associativity is an important property. When combining elements in a category, you can associate them in different ways, but as long as associativity holds, the result will be the same. This property makes working with categories manageable and consistent.\nBut what if we didn’t require strict associativity? Is it still possible to have a valid theory? The answer is yes. There are areas in mathematics where associativity is weakened: the two different ways of combining things aren’t identical, but they are isomorphic. This means they are related in a way that one can be transformed into the other.\n\n2.1.1 Example: Floating Point Arithmetic\nFor example, in floating point arithmetic, the order of operations may result in slightly different results due to the finite precision of calculations. This does not form a valid category since strict associativity is required for categories."
+    "section": "3.1 Can We Have Non-Associative Theories?",
+    "text": "3.1 Can We Have Non-Associative Theories?\nAssociativity is a fundamental property in category theory. When composing morphisms (arrows) in a category, the order of grouping does not affect the result:\n\\[(f \\circ g) \\circ h = f \\circ (g \\circ h)\\]\nThis guarantees that composition is well-defined and predictable. But what happens if we weaken associativity? Can we still construct meaningful mathematical structures?\nThe answer is yes—many mathematical frameworks allow associativity to hold only up to isomorphism. This means that different ways of composing elements may not be strictly identical but can be transformed into each other in a controlled way.\n\n3.1.1 Example: Floating Point Arithmetic\nIn floating-point arithmetic, associativity does not hold due to rounding errors:\n(1.0 + 1e-10) + 1e-10 != 1.0 + (1e-10 + 1e-10)\nThis inconsistency prevents floating-point operations from forming a category because composition must be strictly associative.\n\n\n3.1.2 Example: Higher Structures in Mathematics\nIn more advanced mathematics, structures like monoidal categories allow composition to be associative only up to isomorphism. This flexibility is crucial in fields like algebraic topology and quantum mechanics."
   },
   {
     "objectID": "category_theory.html#categories-vs.-groups",
     "href": "category_theory.html#categories-vs.-groups",
     "title": "2  Associativity and its Role in Categories",
-    "section": "2.2 Categories vs. Groups",
-    "text": "2.2 Categories vs. Groups\nThe structure described in category theory shares some similarities with groups, but it is more general. A group is a type of monoid with an added property: every element has an inverse.\nIf every morphism (arrow) in a category has an inverse, the category becomes a groupoid. A groupoid is more general than a group because a group only has one object with its operations, whereas a category can have multiple objects with morphisms between them.\nThe distinction between groups and categories is that in a category, not all objects can be composed with each other. The ability to compose objects depends on whether the end of one morphism matches the start of another."
+    "section": "3.2 Categories vs. Groups",
+    "text": "3.2 Categories vs. Groups\nCategory theory generalizes structures like monoids and groups. A monoid consists of elements with an associative binary operation and an identity element. A group extends this by requiring that every element has an inverse.\n\n3.2.1 What Happens When Morphisms Have Inverses?\nIf every morphism in a category has an inverse, the category is called a groupoid. This generalizes the concept of a group by allowing multiple objects. Unlike a single group where all elements interact, a groupoid consists of a network of invertible transformations.\n\n\n3.2.2 Composition in Categories vs. Groups\n\nIn groups, every element has an inverse, ensuring symmetry.\nIn categories, morphisms may not be invertible, making them more flexible but less rigid than groups.\nComposition in categories is partial—morphisms can only compose if the target of one matches the source of another."
   },
   {
-    "objectID": "category_theory.html#the-category-of-types",
-    "href": "category_theory.html#the-category-of-types",
+    "objectID": "category_theory.html#category-theory-in-programming",
+    "href": "category_theory.html#category-theory-in-programming",
     "title": "2  Associativity and its Role in Categories",
-    "section": "3.1 The Category of Types",
-    "text": "3.1 The Category of Types\nA practical example of category theory comes from programming languages such as Haskell and ML. In these languages, types can be treated as objects, and functions between types are the morphisms of the category.\nIn these programming categories, a function from type A to type B is considered an arrow or morphism from object A to object B.\n\n3.1.1 Special Case in Haskell\nIn Haskell, things are slightly more complicated due to the concept of laziness. In Haskell, every type contains an undefined value (bottom) which represents non-terminating computations. This introduces a level of complexity that is not typically considered in pure category theory, as categories don’t account for time or infinite loops in computation."
+    "section": "3.3 Category Theory in Programming",
+    "text": "3.3 Category Theory in Programming\n\n3.3.1 The Category of Types\nFunctional programming languages like Haskell and ML provide concrete examples of category theory in action. In these languages:\n\nTypes correspond to objects in a category.\nFunctions correspond to morphisms between those objects.\n\nA function f: A → B represents an arrow from type A to type B. Function composition obeys associativity, making the set of types and functions a valid category.\n\n3.3.1.1 Special Case in Haskell: Laziness and Bottom Values\nHaskell introduces additional complexity because every type includes an undefined value (⊥), representing non-termination. This means that function composition in Haskell aligns more closely with enriched categories, where additional structure (like computational effects) must be considered.\n\n\n\n3.3.2 Types as Sets\nIn ML, types can be seen as sets of values, making function application resemble set functions in mathematics. This model works well because ML lacks non-terminating computations, unlike Haskell.\nThus, programming categories often model the category of sets:\n\nObjects = types (sets of values)\nMorphisms = functions between types"
   },
   {
-    "objectID": "category_theory.html#types-as-sets",
-    "href": "category_theory.html#types-as-sets",
+    "objectID": "category_theory.html#constructing-a-category-from-sets",
+    "href": "category_theory.html#constructing-a-category-from-sets",
     "title": "2  Associativity and its Role in Categories",
-    "section": "3.2 Types as Sets",
-    "text": "3.2 Types as Sets\nIn some programming languages like ML, types can be viewed as sets of values. The functions between these types are simply functions between sets. This simplification works well in languages that don’t have infinite loops or non-terminating computations, unlike Haskell.\nThus, we can model a category of types as a category of sets. In this model, functions are the morphisms, and types are sets of values. A function from type A to type B becomes a mathematical function between sets A and B."
+    "section": "3.4 Constructing a Category from Sets",
+    "text": "3.4 Constructing a Category from Sets\n\n3.4.1 The Category of Sets (Set)\nIn category theory, we can construct a category from set theory:\n\nObjects: Sets\nMorphisms: Functions between sets\n\nA key feature is that once we define a category, we ignore the internal structure of sets. We only care about how objects interact via morphisms.\n\n\n3.4.2 Composition of Functions\nFunction composition provides a natural example of category composition:\nIf f: A → B and g: B → C, then their composition g ∘ f: A → C is defined as:\n\\[ (g ∘ f)(x) = g(f(x)) \\]\nThis satisfies associativity:\n\\[ (h ∘ g) ∘ f = h ∘ (g ∘ f) \\]\nwhere h: C → D is another function.\n\n\n3.4.3 Identity Morphisms\nEach set has an identity function:\n\\[ id_A: A → A \\]\nwhich satisfies:\n\\[ f ∘ id_A = f \\quad \\text{and} \\quad id_B ∘ f = f \\]\nfor any function f: A → B. These identity functions ensure that the category of sets (Set) meets the identity law of category theory."
   },
   {
-    "objectID": "category_theory.html#set-theory-and-categories",
-    "href": "category_theory.html#set-theory-and-categories",
+    "objectID": "category_theory.html#the-power-of-abstraction-in-category-theory",
+    "href": "category_theory.html#the-power-of-abstraction-in-category-theory",
     "title": "2  Associativity and its Role in Categories",
-    "section": "4.1 Set Theory and Categories",
-    "text": "4.1 Set Theory and Categories\nTo build a category, you start with sets. In set theory, each set contains elements, and functions between sets are simply mappings from elements of one set to another. From this perspective, you can form a category where:\n\nThe objects are the sets.\nThe morphisms are the functions between the sets.\n\n\n4.1.1 Forgetting Internal Structure\nOnce the category is created, the internal structure of the sets is forgotten. All that remains are the morphisms that relate the sets to each other. The composition of these morphisms follows the rules of category theory, with associativity and identity being central properties.\n\n\n4.1.2 Composition of Functions\nFunction composition in set theory is simply the act of applying one function to the result of another. If f: A -&gt; B and g: B -&gt; C, then the composition g ∘ f is a function that takes A to C.\n\nIf x is an element of set A, f(x) is an element of set B.\nThen g(f(x)) is an element of set C.\n\n\n\n4.1.3 Identity Function\nEach set also has an identity function. This is a function that maps each element of a set to itself. The identity function acts as a neutral element in function composition: when composed with any other function, it leaves that function unchanged.\n\nIn a category, the identity function corresponds to an identity morphism.\nFor any morphism f, composing it with the identity morphism gives back the original morphism: f ∘ id_A = f and id_B ∘ f = f."
+    "section": "3.5 The Power of Abstraction in Category Theory",
+    "text": "3.5 The Power of Abstraction in Category Theory\n\n3.5.1 Forgetting Internal Structure\nCategory theory emphasizes relationships over internal structure. Once we construct a category, we disregard the nature of objects and focus on how they connect through morphisms.\n\nThis parallels data hiding in programming: objects expose interfaces (morphisms) rather than their internal workings.\nA category provides a high-level view where composition is central, making it a tool for reasoning about abstract mathematical structures.\n\n\n\n3.5.2 Why is This Useful?\n\nModularity: Systems can be understood in terms of how their parts interact.\nReusability: Abstract structures like functors and monads apply across different domains (e.g., databases, compiler design, quantum mechanics).\nUnification: Concepts from algebra, topology, and logic can be studied within a single framework."
   },
   {
-    "objectID": "category_theory.html#the-category-of-sets-set-theory",
-    "href": "category_theory.html#the-category-of-sets-set-theory",
+    "objectID": "category_theory.html#conclusion",
+    "href": "category_theory.html#conclusion",
     "title": "2  Associativity and its Role in Categories",
-    "section": "4.2 The Category of Sets (Set Theory)",
-    "text": "4.2 The Category of Sets (Set Theory)\nThis category, called Set, consists of sets and functions between them. The creation of the category Set follows a process where the internal structure of the sets and their elements is forgotten. We only care about the morphisms (functions) and their composition.\n\n4.2.1 Forgetting the Structure\nOnce you form a category, you forget about the internal structure of the objects. The objects (sets) become “atoms” with no internal properties, and you focus solely on how they are connected to other objects through morphisms (functions).\n\nIn the category Set, sets are objects, and the morphisms are functions between them.\nYou build a multiplication table (composition table) that defines how these morphisms can be composed, and this composition follows the axioms of category theory (associativity, identity).\n\n\n\n4.2.2 Composition Table\nIn the category of sets, you can think of each function between two sets as an arrow. The composition of these arrows is simply the composition of the functions. The identity function for each set ensures that the composition works according to the rules of category theory."
-  },
-  {
-    "objectID": "category_theory.html#abstraction-and-data-hiding",
-    "href": "category_theory.html#abstraction-and-data-hiding",
-    "title": "2  Associativity and its Role in Categories",
-    "section": "4.3 Abstraction and Data Hiding",
-    "text": "4.3 Abstraction and Data Hiding\nCategory theory represents a higher level of abstraction. Once you form a category from sets, you forget about the internal elements of the sets. You are left with the interface of each object — how it connects to other objects through morphisms.\nThis abstraction represents the end of the road for data hiding: you don’t need to know what the internal structure of a set is, only how it connects with other sets. This is similar to the idea of data hiding in programming, where you only expose the relevant interface of a data structure.\n\n4.3.1 The Ultimate in Abstraction\nCategory theory provides a powerful tool for studying mathematical structures at a high level of abstraction. It allows us to work with objects and morphisms without worrying about the specifics of their internal construction. It is, in a sense, the ultimate language for abstraction."
+    "section": "3.6 Conclusion",
+    "text": "3.6 Conclusion\nCategory theory provides a powerful lens for understanding mathematical and computational structures. By focusing on morphisms and their composition, it allows us to study how objects interact without needing to understand their internal construction. This abstraction leads to new insights in both mathematics and computer science, making category theory a fundamental tool for formal reasoning."
   },
   {
     "objectID": "functions.html",

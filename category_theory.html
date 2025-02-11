@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -62,6 +96,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -150,38 +186,36 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#is-it-possible-to-have-non-associative-theories" id="toc-is-it-possible-to-have-non-associative-theories" class="nav-link active" data-scroll-target="#is-it-possible-to-have-non-associative-theories"><span class="header-section-number">2.1</span> Is it Possible to Have Non-Associative Theories?</a>
+  <li><a href="#associativity-and-its-role-in-categories" id="toc-associativity-and-its-role-in-categories" class="nav-link active" data-scroll-target="#associativity-and-its-role-in-categories"><span class="header-section-number">3</span> Associativity and its Role in Categories</a>
   <ul class="collapse">
-  <li><a href="#example-floating-point-arithmetic" id="toc-example-floating-point-arithmetic" class="nav-link" data-scroll-target="#example-floating-point-arithmetic"><span class="header-section-number">2.1.1</span> Example: Floating Point Arithmetic</a></li>
-  </ul></li>
-  <li><a href="#categories-vs.-groups" id="toc-categories-vs.-groups" class="nav-link" data-scroll-target="#categories-vs.-groups"><span class="header-section-number">2.2</span> Categories vs.&nbsp;Groups</a></li>
-  <li><a href="#programming-and-category-theory" id="toc-programming-and-category-theory" class="nav-link" data-scroll-target="#programming-and-category-theory"><span class="header-section-number">3</span> Programming and Category Theory</a>
+  <li><a href="#can-we-have-non-associative-theories" id="toc-can-we-have-non-associative-theories" class="nav-link" data-scroll-target="#can-we-have-non-associative-theories"><span class="header-section-number">3.1</span> Can We Have Non-Associative Theories?</a>
   <ul class="collapse">
-  <li><a href="#the-category-of-types" id="toc-the-category-of-types" class="nav-link" data-scroll-target="#the-category-of-types"><span class="header-section-number">3.1</span> The Category of Types</a>
+  <li><a href="#example-floating-point-arithmetic" id="toc-example-floating-point-arithmetic" class="nav-link" data-scroll-target="#example-floating-point-arithmetic"><span class="header-section-number">3.1.1</span> Example: Floating Point Arithmetic</a></li>
+  <li><a href="#example-higher-structures-in-mathematics" id="toc-example-higher-structures-in-mathematics" class="nav-link" data-scroll-target="#example-higher-structures-in-mathematics"><span class="header-section-number">3.1.2</span> Example: Higher Structures in Mathematics</a></li>
+  </ul></li>
+  <li><a href="#categories-vs.-groups" id="toc-categories-vs.-groups" class="nav-link" data-scroll-target="#categories-vs.-groups"><span class="header-section-number">3.2</span> Categories vs.&nbsp;Groups</a>
   <ul class="collapse">
-  <li><a href="#special-case-in-haskell" id="toc-special-case-in-haskell" class="nav-link" data-scroll-target="#special-case-in-haskell"><span class="header-section-number">3.1.1</span> Special Case in Haskell</a></li>
+  <li><a href="#what-happens-when-morphisms-have-inverses" id="toc-what-happens-when-morphisms-have-inverses" class="nav-link" data-scroll-target="#what-happens-when-morphisms-have-inverses"><span class="header-section-number">3.2.1</span> What Happens When Morphisms Have Inverses?</a></li>
+  <li><a href="#composition-in-categories-vs.-groups" id="toc-composition-in-categories-vs.-groups" class="nav-link" data-scroll-target="#composition-in-categories-vs.-groups"><span class="header-section-number">3.2.2</span> Composition in Categories vs.&nbsp;Groups</a></li>
   </ul></li>
-  <li><a href="#types-as-sets" id="toc-types-as-sets" class="nav-link" data-scroll-target="#types-as-sets"><span class="header-section-number">3.2</span> Types as Sets</a></li>
-  </ul></li>
-  <li><a href="#building-a-category-from-sets" id="toc-building-a-category-from-sets" class="nav-link" data-scroll-target="#building-a-category-from-sets"><span class="header-section-number">4</span> Building a Category from Sets</a>
+  <li><a href="#category-theory-in-programming" id="toc-category-theory-in-programming" class="nav-link" data-scroll-target="#category-theory-in-programming"><span class="header-section-number">3.3</span> Category Theory in Programming</a>
   <ul class="collapse">
-  <li><a href="#set-theory-and-categories" id="toc-set-theory-and-categories" class="nav-link" data-scroll-target="#set-theory-and-categories"><span class="header-section-number">4.1</span> Set Theory and Categories</a>
+  <li><a href="#the-category-of-types" id="toc-the-category-of-types" class="nav-link" data-scroll-target="#the-category-of-types"><span class="header-section-number">3.3.1</span> The Category of Types</a></li>
+  <li><a href="#types-as-sets" id="toc-types-as-sets" class="nav-link" data-scroll-target="#types-as-sets"><span class="header-section-number">3.3.2</span> Types as Sets</a></li>
+  </ul></li>
+  <li><a href="#constructing-a-category-from-sets" id="toc-constructing-a-category-from-sets" class="nav-link" data-scroll-target="#constructing-a-category-from-sets"><span class="header-section-number">3.4</span> Constructing a Category from Sets</a>
   <ul class="collapse">
-  <li><a href="#forgetting-internal-structure" id="toc-forgetting-internal-structure" class="nav-link" data-scroll-target="#forgetting-internal-structure"><span class="header-section-number">4.1.1</span> Forgetting Internal Structure</a></li>
-  <li><a href="#composition-of-functions" id="toc-composition-of-functions" class="nav-link" data-scroll-target="#composition-of-functions"><span class="header-section-number">4.1.2</span> Composition of Functions</a></li>
-  <li><a href="#identity-function" id="toc-identity-function" class="nav-link" data-scroll-target="#identity-function"><span class="header-section-number">4.1.3</span> Identity Function</a></li>
+  <li><a href="#the-category-of-sets-set" id="toc-the-category-of-sets-set" class="nav-link" data-scroll-target="#the-category-of-sets-set"><span class="header-section-number">3.4.1</span> The Category of Sets (<code>Set</code>)</a></li>
+  <li><a href="#composition-of-functions" id="toc-composition-of-functions" class="nav-link" data-scroll-target="#composition-of-functions"><span class="header-section-number">3.4.2</span> Composition of Functions</a></li>
+  <li><a href="#identity-morphisms" id="toc-identity-morphisms" class="nav-link" data-scroll-target="#identity-morphisms"><span class="header-section-number">3.4.3</span> Identity Morphisms</a></li>
   </ul></li>
-  <li><a href="#the-category-of-sets-set-theory" id="toc-the-category-of-sets-set-theory" class="nav-link" data-scroll-target="#the-category-of-sets-set-theory"><span class="header-section-number">4.2</span> The Category of Sets (Set Theory)</a>
+  <li><a href="#the-power-of-abstraction-in-category-theory" id="toc-the-power-of-abstraction-in-category-theory" class="nav-link" data-scroll-target="#the-power-of-abstraction-in-category-theory"><span class="header-section-number">3.5</span> The Power of Abstraction in Category Theory</a>
   <ul class="collapse">
-  <li><a href="#forgetting-the-structure" id="toc-forgetting-the-structure" class="nav-link" data-scroll-target="#forgetting-the-structure"><span class="header-section-number">4.2.1</span> Forgetting the Structure</a></li>
-  <li><a href="#composition-table" id="toc-composition-table" class="nav-link" data-scroll-target="#composition-table"><span class="header-section-number">4.2.2</span> Composition Table</a></li>
+  <li><a href="#forgetting-internal-structure" id="toc-forgetting-internal-structure" class="nav-link" data-scroll-target="#forgetting-internal-structure"><span class="header-section-number">3.5.1</span> Forgetting Internal Structure</a></li>
+  <li><a href="#why-is-this-useful" id="toc-why-is-this-useful" class="nav-link" data-scroll-target="#why-is-this-useful"><span class="header-section-number">3.5.2</span> Why is This Useful?</a></li>
   </ul></li>
-  <li><a href="#abstraction-and-data-hiding" id="toc-abstraction-and-data-hiding" class="nav-link" data-scroll-target="#abstraction-and-data-hiding"><span class="header-section-number">4.3</span> Abstraction and Data Hiding</a>
-  <ul class="collapse">
-  <li><a href="#the-ultimate-in-abstraction" id="toc-the-ultimate-in-abstraction" class="nav-link" data-scroll-target="#the-ultimate-in-abstraction"><span class="header-section-number">4.3.1</span> The Ultimate in Abstraction</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.6</span> Conclusion</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -205,99 +239,120 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="is-it-possible-to-have-non-associative-theories" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="is-it-possible-to-have-non-associative-theories"><span class="header-section-number">2.1</span> Is it Possible to Have Non-Associative Theories?</h2>
-<p>In category theory, associativity is an important property. When combining elements in a category, you can associate them in different ways, but as long as associativity holds, the result will be the same. This property makes working with categories manageable and consistent.</p>
-<p>But what if we didn’t require strict associativity? Is it still possible to have a valid theory? The answer is yes. There are areas in mathematics where associativity is <strong>weakened</strong>: the two different ways of combining things aren’t identical, but they are <strong>isomorphic</strong>. This means they are related in a way that one can be transformed into the other.</p>
-<section id="example-floating-point-arithmetic" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="example-floating-point-arithmetic"><span class="header-section-number">2.1.1</span> Example: Floating Point Arithmetic</h3>
-<p>For example, in floating point arithmetic, the order of operations may result in slightly different results due to the finite precision of calculations. This does not form a valid category since strict associativity is required for categories.</p>
+<section id="associativity-and-its-role-in-categories" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Associativity and its Role in Categories</h1>
+<section id="can-we-have-non-associative-theories" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="can-we-have-non-associative-theories"><span class="header-section-number">3.1</span> Can We Have Non-Associative Theories?</h2>
+<p>Associativity is a fundamental property in category theory. When composing morphisms (arrows) in a category, the order of grouping does not affect the result:</p>
+<p><span class="math display">\[(f \circ g) \circ h = f \circ (g \circ h)\]</span></p>
+<p>This guarantees that composition is well-defined and predictable. But what happens if we <strong>weaken</strong> associativity? Can we still construct meaningful mathematical structures?</p>
+<p>The answer is yes—many mathematical frameworks allow associativity to hold only <strong>up to isomorphism</strong>. This means that different ways of composing elements may not be strictly identical but can be transformed into each other in a controlled way.</p>
+<section id="example-floating-point-arithmetic" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="example-floating-point-arithmetic"><span class="header-section-number">3.1.1</span> Example: Floating Point Arithmetic</h3>
+<p>In floating-point arithmetic, associativity does not hold due to rounding errors:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">1e-10</span>) <span class="op">+</span> <span class="fl">1e-10</span> <span class="op">!=</span> <span class="fl">1.0</span> <span class="op">+</span> (<span class="fl">1e-10</span> <span class="op">+</span> <span class="fl">1e-10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This inconsistency prevents floating-point operations from forming a category because composition must be strictly associative.</p>
+</section>
+<section id="example-higher-structures-in-mathematics" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="example-higher-structures-in-mathematics"><span class="header-section-number">3.1.2</span> Example: Higher Structures in Mathematics</h3>
+<p>In more advanced mathematics, structures like <strong>monoidal categories</strong> allow composition to be associative only up to isomorphism. This flexibility is crucial in fields like algebraic topology and quantum mechanics.</p>
 </section>
 </section>
-<section id="categories-vs.-groups" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="categories-vs.-groups"><span class="header-section-number">2.2</span> Categories vs.&nbsp;Groups</h2>
-<p>The structure described in category theory shares some similarities with <strong>groups</strong>, but it is more general. A <strong>group</strong> is a type of <strong>monoid</strong> with an added property: every element has an inverse.</p>
-<p>If every morphism (arrow) in a category has an inverse, the category becomes a <strong>groupoid</strong>. A <strong>groupoid</strong> is more general than a group because a group only has one object with its operations, whereas a category can have multiple objects with morphisms between them.</p>
-<p>The distinction between groups and categories is that in a category, not all objects can be composed with each other. The ability to compose objects depends on whether the end of one morphism matches the start of another.</p>
+<section id="categories-vs.-groups" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="categories-vs.-groups"><span class="header-section-number">3.2</span> Categories vs.&nbsp;Groups</h2>
+<p>Category theory generalizes structures like <strong>monoids</strong> and <strong>groups</strong>. A <strong>monoid</strong> consists of elements with an associative binary operation and an identity element. A <strong>group</strong> extends this by requiring that every element has an inverse.</p>
+<section id="what-happens-when-morphisms-have-inverses" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="what-happens-when-morphisms-have-inverses"><span class="header-section-number">3.2.1</span> What Happens When Morphisms Have Inverses?</h3>
+<p>If every morphism in a category has an inverse, the category is called a <strong>groupoid</strong>. This generalizes the concept of a group by allowing multiple objects. Unlike a single group where all elements interact, a groupoid consists of a network of invertible transformations.</p>
 </section>
-<section id="programming-and-category-theory" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Programming and Category Theory</h1>
-<section id="the-category-of-types" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="the-category-of-types"><span class="header-section-number">3.1</span> The Category of Types</h2>
-<p>A practical example of category theory comes from programming languages such as <strong>Haskell</strong> and <strong>ML</strong>. In these languages, types can be treated as <strong>objects</strong>, and <strong>functions</strong> between types are the <strong>morphisms</strong> of the category.</p>
-<p>In these programming categories, a function from type <code>A</code> to type <code>B</code> is considered an arrow or morphism from object <code>A</code> to object <code>B</code>.</p>
-<section id="special-case-in-haskell" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="special-case-in-haskell"><span class="header-section-number">3.1.1</span> Special Case in Haskell</h3>
-<p>In <strong>Haskell</strong>, things are slightly more complicated due to the concept of <strong>laziness</strong>. In Haskell, every type contains an undefined value (<code>bottom</code>) which represents non-terminating computations. This introduces a level of complexity that is not typically considered in pure category theory, as categories don’t account for time or infinite loops in computation.</p>
-</section>
-</section>
-<section id="types-as-sets" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="types-as-sets"><span class="header-section-number">3.2</span> Types as Sets</h2>
-<p>In some programming languages like <strong>ML</strong>, types can be viewed as <strong>sets</strong> of values. The functions between these types are simply <strong>functions between sets</strong>. This simplification works well in languages that don’t have infinite loops or non-terminating computations, unlike Haskell.</p>
-<p>Thus, we can model a category of types as a <strong>category of sets</strong>. In this model, functions are the morphisms, and types are sets of values. A function from type <code>A</code> to type <code>B</code> becomes a mathematical function between sets <code>A</code> and <code>B</code>.</p>
-</section>
-</section>
-<section id="building-a-category-from-sets" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Building a Category from Sets</h1>
-<section id="set-theory-and-categories" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="set-theory-and-categories"><span class="header-section-number">4.1</span> Set Theory and Categories</h2>
-<p>To build a category, you start with <strong>sets</strong>. In set theory, each set contains elements, and functions between sets are simply mappings from elements of one set to another. From this perspective, you can form a category where:</p>
+<section id="composition-in-categories-vs.-groups" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="composition-in-categories-vs.-groups"><span class="header-section-number">3.2.2</span> Composition in Categories vs.&nbsp;Groups</h3>
 <ul>
-<li>The <strong>objects</strong> are the sets.</li>
-<li>The <strong>morphisms</strong> are the functions between the sets.</li>
-</ul>
-<section id="forgetting-internal-structure" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="forgetting-internal-structure"><span class="header-section-number">4.1.1</span> Forgetting Internal Structure</h3>
-<p>Once the category is created, the internal structure of the sets is forgotten. All that remains are the <strong>morphisms</strong> that relate the sets to each other. The <strong>composition</strong> of these morphisms follows the rules of category theory, with <strong>associativity</strong> and <strong>identity</strong> being central properties.</p>
-</section>
-<section id="composition-of-functions" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="composition-of-functions"><span class="header-section-number">4.1.2</span> Composition of Functions</h3>
-<p>Function composition in set theory is simply the act of applying one function to the result of another. If <code>f: A -&gt; B</code> and <code>g: B -&gt; C</code>, then the composition <code>g ∘ f</code> is a function that takes <code>A</code> to <code>C</code>.</p>
-<ul>
-<li>If <code>x</code> is an element of set <code>A</code>, <code>f(x)</code> is an element of set <code>B</code>.</li>
-<li>Then <code>g(f(x))</code> is an element of set <code>C</code>.</li>
-</ul>
-</section>
-<section id="identity-function" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="identity-function"><span class="header-section-number">4.1.3</span> Identity Function</h3>
-<p>Each set also has an <strong>identity function</strong>. This is a function that maps each element of a set to itself. The identity function acts as a neutral element in function composition: when composed with any other function, it leaves that function unchanged.</p>
-<ul>
-<li>In a category, the identity function corresponds to an <strong>identity morphism</strong>.</li>
-<li>For any morphism <code>f</code>, composing it with the identity morphism gives back the original morphism: <code>f ∘ id_A = f</code> and <code>id_B ∘ f = f</code>.</li>
+<li>In <strong>groups</strong>, every element has an inverse, ensuring symmetry.</li>
+<li>In <strong>categories</strong>, morphisms may not be invertible, making them more flexible but less rigid than groups.</li>
+<li>Composition in categories is <strong>partial</strong>—morphisms can only compose if the target of one matches the source of another.</li>
 </ul>
 </section>
 </section>
-<section id="the-category-of-sets-set-theory" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="the-category-of-sets-set-theory"><span class="header-section-number">4.2</span> The Category of Sets (Set Theory)</h2>
-<p>This category, called <strong>Set</strong>, consists of sets and functions between them. The creation of the category <strong>Set</strong> follows a process where the internal structure of the sets and their elements is forgotten. We only care about the <strong>morphisms</strong> (functions) and their composition.</p>
-<section id="forgetting-the-structure" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="forgetting-the-structure"><span class="header-section-number">4.2.1</span> Forgetting the Structure</h3>
-<p>Once you form a category, you forget about the internal structure of the objects. The objects (sets) become “atoms” with no internal properties, and you focus solely on how they are connected to other objects through morphisms (functions).</p>
+<section id="category-theory-in-programming" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="category-theory-in-programming"><span class="header-section-number">3.3</span> Category Theory in Programming</h2>
+<section id="the-category-of-types" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="the-category-of-types"><span class="header-section-number">3.3.1</span> The Category of Types</h3>
+<p>Functional programming languages like <strong>Haskell</strong> and <strong>ML</strong> provide concrete examples of category theory in action. In these languages:</p>
 <ul>
-<li>In the category <strong>Set</strong>, sets are objects, and the morphisms are functions between them.</li>
-<li>You build a <strong>multiplication table</strong> (composition table) that defines how these morphisms can be composed, and this composition follows the axioms of category theory (associativity, identity).</li>
+<li><strong>Types</strong> correspond to objects in a category.</li>
+<li><strong>Functions</strong> correspond to morphisms between those objects.</li>
+</ul>
+<p>A function <code>f: A → B</code> represents an arrow from type <code>A</code> to type <code>B</code>. Function composition obeys associativity, making the set of types and functions a valid category.</p>
+<section id="special-case-in-haskell-laziness-and-bottom-values" class="level4" data-number="3.3.1.1">
+<h4 data-number="3.3.1.1" class="anchored" data-anchor-id="special-case-in-haskell-laziness-and-bottom-values"><span class="header-section-number">3.3.1.1</span> Special Case in Haskell: Laziness and Bottom Values</h4>
+<p>Haskell introduces additional complexity because every type includes an undefined value (<code>⊥</code>), representing non-termination. This means that function composition in Haskell aligns more closely with <strong>enriched categories</strong>, where additional structure (like computational effects) must be considered.</p>
+</section>
+</section>
+<section id="types-as-sets" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="types-as-sets"><span class="header-section-number">3.3.2</span> Types as Sets</h3>
+<p>In <strong>ML</strong>, types can be seen as <strong>sets of values</strong>, making function application resemble set functions in mathematics. This model works well because ML lacks non-terminating computations, unlike Haskell.</p>
+<p>Thus, programming categories often model the <strong>category of sets</strong>:</p>
+<ul>
+<li><strong>Objects</strong> = types (sets of values)</li>
+<li><strong>Morphisms</strong> = functions between types</li>
 </ul>
 </section>
-<section id="composition-table" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="composition-table"><span class="header-section-number">4.2.2</span> Composition Table</h3>
-<p>In the category of sets, you can think of each function between two sets as an arrow. The composition of these arrows is simply the composition of the functions. The identity function for each set ensures that the composition works according to the rules of category theory.</p>
+</section>
+<section id="constructing-a-category-from-sets" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="constructing-a-category-from-sets"><span class="header-section-number">3.4</span> Constructing a Category from Sets</h2>
+<section id="the-category-of-sets-set" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="the-category-of-sets-set"><span class="header-section-number">3.4.1</span> The Category of Sets (<code>Set</code>)</h3>
+<p>In category theory, we can construct a category from set theory:</p>
+<ul>
+<li><strong>Objects</strong>: Sets</li>
+<li><strong>Morphisms</strong>: Functions between sets</li>
+</ul>
+<p>A key feature is that once we define a category, we ignore the internal structure of sets. We only care about how objects interact via morphisms.</p>
+</section>
+<section id="composition-of-functions" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="composition-of-functions"><span class="header-section-number">3.4.2</span> Composition of Functions</h3>
+<p>Function composition provides a natural example of category composition:</p>
+<p>If <code>f: A → B</code> and <code>g: B → C</code>, then their composition <code>g ∘ f: A → C</code> is defined as:</p>
+<p><span class="math display">\[ (g ∘ f)(x) = g(f(x)) \]</span></p>
+<p>This satisfies associativity:</p>
+<p><span class="math display">\[ (h ∘ g) ∘ f = h ∘ (g ∘ f) \]</span></p>
+<p>where <code>h: C → D</code> is another function.</p>
+</section>
+<section id="identity-morphisms" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="identity-morphisms"><span class="header-section-number">3.4.3</span> Identity Morphisms</h3>
+<p>Each set has an <strong>identity function</strong>:</p>
+<p><span class="math display">\[ id_A: A → A \]</span></p>
+<p>which satisfies:</p>
+<p><span class="math display">\[ f ∘ id_A = f \quad \text{and} \quad id_B ∘ f = f \]</span></p>
+<p>for any function <code>f: A → B</code>. These identity functions ensure that the category of sets (<code>Set</code>) meets the identity law of category theory.</p>
 </section>
 </section>
-<section id="abstraction-and-data-hiding" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="abstraction-and-data-hiding"><span class="header-section-number">4.3</span> Abstraction and Data Hiding</h2>
-<p>Category theory represents a higher level of abstraction. Once you form a category from sets, you forget about the internal elements of the sets. You are left with the <strong>interface</strong> of each object — how it connects to other objects through morphisms.</p>
-<p>This abstraction represents the <strong>end of the road for data hiding</strong>: you don’t need to know what the internal structure of a set is, only how it connects with other sets. This is similar to the idea of <strong>data hiding</strong> in programming, where you only expose the relevant interface of a data structure.</p>
-<section id="the-ultimate-in-abstraction" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="the-ultimate-in-abstraction"><span class="header-section-number">4.3.1</span> The Ultimate in Abstraction</h3>
-<p>Category theory provides a powerful tool for studying mathematical structures at a high level of abstraction. It allows us to work with objects and morphisms without worrying about the specifics of their internal construction. It is, in a sense, the ultimate language for abstraction.</p>
+<section id="the-power-of-abstraction-in-category-theory" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="the-power-of-abstraction-in-category-theory"><span class="header-section-number">3.5</span> The Power of Abstraction in Category Theory</h2>
+<section id="forgetting-internal-structure" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="forgetting-internal-structure"><span class="header-section-number">3.5.1</span> Forgetting Internal Structure</h3>
+<p>Category theory emphasizes <strong>relationships</strong> over internal structure. Once we construct a category, we disregard the nature of objects and focus on how they connect through morphisms.</p>
+<ul>
+<li>This parallels <strong>data hiding</strong> in programming: objects expose interfaces (morphisms) rather than their internal workings.</li>
+<li>A category provides a high-level view where composition is central, making it a tool for reasoning about abstract mathematical structures.</li>
+</ul>
+</section>
+<section id="why-is-this-useful" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="why-is-this-useful"><span class="header-section-number">3.5.2</span> Why is This Useful?</h3>
+<ul>
+<li><strong>Modularity</strong>: Systems can be understood in terms of how their parts interact.</li>
+<li><strong>Reusability</strong>: Abstract structures like functors and monads apply across different domains (e.g., databases, compiler design, quantum mechanics).</li>
+<li><strong>Unification</strong>: Concepts from algebra, topology, and logic can be studied within a single framework.</li>
+</ul>
 </section>
 </section>
-</section>
-<section id="conclusion" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Conclusion</h1>
-<p>Category theory offers a framework for thinking about mathematical structures and their relationships in an abstract, high-level way. By focusing on morphisms and their composition, we can study the properties of objects without needing to understand their internal details. This approach to abstraction leads to new insights into mathematics and computation, ultimately enabling a deeper understanding of how various structures are interconnected.</p>
+<section id="conclusion" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.6</span> Conclusion</h2>
+<p>Category theory provides a powerful lens for understanding mathematical and computational structures. By focusing on morphisms and their composition, it allows us to study <strong>how</strong> objects interact without needing to understand their internal construction. This abstraction leads to new insights in both mathematics and computer science, making category theory a fundamental tool for formal reasoning.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
