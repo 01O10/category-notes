@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>category - 1&nbsp; Understanding Category Theory, Type Theory, and Logic</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./fundamentals.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Understanding Category Theory, Type Theory, and Logic</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">category</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Understanding Category Theory, Type Theory, and Logic</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./fundamentals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./category_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Associativity and its Role in Categories</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relations and Functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-low-level-perspective" id="toc-the-low-level-perspective" class="nav-link active" data-scroll-target="#the-low-level-perspective"><span class="header-section-number">1.1</span> The Low-Level Perspective</a></li>
+  <li><a href="#type-theory-in-mathematics" id="toc-type-theory-in-mathematics" class="nav-link" data-scroll-target="#type-theory-in-mathematics"><span class="header-section-number">1.2</span> Type Theory in Mathematics</a>
+  <ul class="collapse">
+  <li><a href="#russells-paradox-a-deeper-look" id="toc-russells-paradox-a-deeper-look" class="nav-link" data-scroll-target="#russells-paradox-a-deeper-look"><span class="header-section-number">1.2.1</span> <strong>Russell’s Paradox: A Deeper Look</strong></a></li>
+  <li><a href="#the-solution-via-type-theory" id="toc-the-solution-via-type-theory" class="nav-link" data-scroll-target="#the-solution-via-type-theory"><span class="header-section-number">1.2.2</span> The Solution via Type Theory</a></li>
+  </ul></li>
+  <li><a href="#martin-löf-type-theory-mltt" id="toc-martin-löf-type-theory-mltt" class="nav-link" data-scroll-target="#martin-löf-type-theory-mltt"><span class="header-section-number">1.3</span> Martin-Löf Type Theory (MLTT)</a>
+  <ul class="collapse">
+  <li><a href="#key-ideas-in-mltt" id="toc-key-ideas-in-mltt" class="nav-link" data-scroll-target="#key-ideas-in-mltt"><span class="header-section-number">1.3.1</span> Key Ideas in MLTT</a></li>
+  <li><a href="#example-in-mltt-proving-implication" id="toc-example-in-mltt-proving-implication" class="nav-link" data-scroll-target="#example-in-mltt-proving-implication"><span class="header-section-number">1.3.2</span> Example in MLTT (Proving Implication)</a></li>
+  </ul></li>
+  <li><a href="#the-curry-howard-lambek-isomorphism" id="toc-the-curry-howard-lambek-isomorphism" class="nav-link" data-scroll-target="#the-curry-howard-lambek-isomorphism"><span class="header-section-number">1.4</span> The Curry-Howard-Lambek Isomorphism</a>
+  <ul class="collapse">
+  <li><a href="#the-correspondence" id="toc-the-correspondence" class="nav-link" data-scroll-target="#the-correspondence"><span class="header-section-number">1.4.1</span> The Correspondence</a></li>
+  <li><a href="#step-by-step-example-of-the-curry-howard-lambek-isomorphism" id="toc-step-by-step-example-of-the-curry-howard-lambek-isomorphism" class="nav-link" data-scroll-target="#step-by-step-example-of-the-curry-howard-lambek-isomorphism"><span class="header-section-number">1.4.2</span> Step-by-Step Example of the Curry-Howard-Lambek Isomorphism</a></li>
+  </ul></li>
+  <li><a href="#the-nature-of-mathematics-discovery-or-invention" id="toc-the-nature-of-mathematics-discovery-or-invention" class="nav-link" data-scroll-target="#the-nature-of-mathematics-discovery-or-invention"><span class="header-section-number">1.5</span> The Nature of Mathematics: Discovery or Invention?</a></li>
+  <li><a href="#the-limits-of-human-cognition" id="toc-the-limits-of-human-cognition" class="nav-link" data-scroll-target="#the-limits-of-human-cognition"><span class="header-section-number">1.6</span> The Limits of Human Cognition</a></li>
+  <li><a href="#is-the-universe-fundamentally-composable" id="toc-is-the-universe-fundamentally-composable" class="nav-link" data-scroll-target="#is-the-universe-fundamentally-composable"><span class="header-section-number">1.7</span> Is the Universe Fundamentally Composable?</a></li>
+  <li><a href="#category-theory-as-a-study-of-human-thought" id="toc-category-theory-as-a-study-of-human-thought" class="nav-link" data-scroll-target="#category-theory-as-a-study-of-human-thought"><span class="header-section-number">1.8</span> Category Theory as a Study of Human Thought</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Understanding Category Theory, Type Theory, and Logic</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Welcome to the fascinating world of <strong>category theory</strong>, <strong>type theory</strong>, and <strong>logic</strong>. These foundational concepts form the backbone of modern mathematics and computer science, playing critical roles in everything from programming languages to mathematical proofs.</p>
+<p>We’ll start with something simple: <strong>bytes</strong>. At the most basic level, everything a computer does boils down to manipulating bytes—small units of digital information. However, when we zoom out, we begin to see that these raw bytes can be interpreted and organized into meaningful patterns using the concepts of <strong>types</strong>. We’ll introduce you to type theory and how it evolved in response to paradoxes in logic. We’ll also look at how <strong>category theory</strong> provides a unifying language for mathematics and computation. By the end of this lesson, you’ll have a clear understanding of how these powerful ideas intersect.</p>
+<hr>
+<section id="the-low-level-perspective" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-low-level-perspective"><span class="header-section-number">1.1</span> The Low-Level Perspective</h2>
+<p>At the lowest level of computing, <strong>everything is just bytes</strong>—binary sequences of 0s and 1s. These bytes represent data—whether numbers, text, images, or sound—everything you interact with on your computer is ultimately made up of bytes.</p>
+<p>For example, consider the byte <code>01001000</code>. In <strong>binary</strong> encoding, this byte represents the character <code>'H'</code> in the ASCII character set. Similarly, <code>01100101</code> represents <code>'e'</code>, and <code>01101100</code> represents <code>'l'</code>. A sequence of these bytes might represent an entire message, such as the word <strong>“Hello”</strong>.</p>
+<p>Bytes are the <strong>raw material</strong> of computing, but they don’t mean much on their own unless we impose some structure. That’s where <strong>types</strong> come in. <strong>Type theory</strong> provides a way to give structure to these raw bytes. In a type system, we classify data into categories or types. This makes it easier to reason about and manipulate the data. For instance, we could classify <code>01001000</code> as a character or <code>01100101</code> as an integer, depending on the context.</p>
+<hr>
+</section>
+<section id="type-theory-in-mathematics" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="type-theory-in-mathematics"><span class="header-section-number">1.2</span> Type Theory in Mathematics</h2>
+<p>Although type theory was originally developed to improve computing, its roots lie in <strong>mathematics</strong>. The history of type theory can be traced back to <strong>logical paradoxes</strong> in set theory. Let’s explore one of the most famous of these paradoxes: <strong>Russell’s Paradox</strong>.</p>
+<section id="russells-paradox-a-deeper-look" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="russells-paradox-a-deeper-look"><span class="header-section-number">1.2.1</span> <strong>Russell’s Paradox: A Deeper Look</strong></h3>
+<p>In 1901, Bertrand Russell discovered a paradox in <strong>set theory</strong>, which is the branch of mathematics that deals with collections of objects. The paradox arises when you try to define the set of all sets that do not contain themselves.</p>
+<p>Let’s break it down:</p>
+<ul>
+<li>Consider the set ( R ), defined as: “the set of all sets that do not contain themselves.”</li>
+</ul>
+<p>Now, ask yourself: <strong>Does the set ( R ) contain itself?</strong></p>
+<ol type="1">
+<li>If ( R ) <strong>contains itself</strong>, then by its definition, it must <strong>not</strong> contain itself, because it only contains sets that do not contain themselves.</li>
+<li>If ( R ) <strong>does not contain itself</strong>, then by its definition, it <strong>must</strong> contain itself because it is a set that does not contain itself.</li>
+</ol>
+<p>This creates a <strong>contradiction</strong>.</p>
+<p>To solve this, Russell proposed introducing a <strong>type system</strong> to prevent sets from containing themselves. In this system, we can categorize sets into levels or <strong>types</strong>, so that a set cannot be a member of itself, thus avoiding the paradox.</p>
+<hr>
+</section>
+<section id="the-solution-via-type-theory" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="the-solution-via-type-theory"><span class="header-section-number">1.2.2</span> The Solution via Type Theory</h3>
+<p>Russell’s type system was the <strong>precursor to type theory</strong> as we know it today. He proposed a hierarchy of sets—called <strong>types</strong>—to organize sets and avoid paradoxes like the one above.</p>
+<section id="example-types-in-set-theory" class="level4" data-number="1.2.2.1">
+<h4 data-number="1.2.2.1" class="anchored" data-anchor-id="example-types-in-set-theory"><span class="header-section-number">1.2.2.1</span> <strong>Example: Types in Set Theory</strong></h4>
+<ul>
+<li><strong>Type 0</strong>: Sets that do not contain themselves.</li>
+<li><strong>Type 1</strong>: Sets that contain only sets from <strong>Type 0</strong>.</li>
+<li><strong>Type 2</strong>: Sets that contain only sets from <strong>Type 1</strong>, and so on.</li>
+</ul>
+<p>With this hierarchical structure, a set of <strong>Type 0</strong> cannot contain itself because it can only contain sets from <strong>Type 1</strong>, which are on a higher level. By categorizing sets in this way, Russell’s system ensured that paradoxes like the one mentioned above would not occur.</p>
+<p>This idea of <strong>types</strong> would go on to influence the development of <strong>Martin-Löf Type Theory (MLTT)</strong>, a more sophisticated type system that is widely used in both <strong>mathematics</strong> and <strong>computer science</strong>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="martin-löf-type-theory-mltt" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="martin-löf-type-theory-mltt"><span class="header-section-number">1.3</span> Martin-Löf Type Theory (MLTT)</h2>
+<section id="key-ideas-in-mltt" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="key-ideas-in-mltt"><span class="header-section-number">1.3.1</span> Key Ideas in MLTT</h3>
+<section id="types-as-sets" class="level4" data-number="1.3.1.1">
+<h4 data-number="1.3.1.1" class="anchored" data-anchor-id="types-as-sets"><span class="header-section-number">1.3.1.1</span> Types as Sets</h4>
+<p>In MLTT, types are collections of objects, similar to sets in set theory. For example, the type <code>Nat</code> (natural numbers) contains objects like <code>0, 1, 2</code>, etc.</p>
+<section id="example" class="level5" data-number="1.3.1.1.1">
+<h5 data-number="1.3.1.1.1" class="anchored" data-anchor-id="example"><span class="header-section-number">1.3.1.1.1</span> Example:</h5>
+<p>Let’s define the type <code>Nat</code>: - <code>Nat = {0, 1, 2, 3, ...}</code>.</p>
+<p>This means the elements of the type <code>Nat</code> are natural numbers.</p>
+</section>
+</section>
+<section id="types-as-propositions" class="level4" data-number="1.3.1.2">
+<h4 data-number="1.3.1.2" class="anchored" data-anchor-id="types-as-propositions"><span class="header-section-number">1.3.1.2</span> Types as Propositions</h4>
+<p>In MLTT, types can also represent logical propositions. A type <code>A → B</code> represents the proposition “if <code>A</code> is true, then <code>B</code> is true.”</p>
+<section id="example-1" class="level5" data-number="1.3.1.2.1">
+<h5 data-number="1.3.1.2.1" class="anchored" data-anchor-id="example-1"><span class="header-section-number">1.3.1.2.1</span> Example:</h5>
+<p>Let <code>A</code> be the type of natural numbers greater than 0, and <code>B</code> be the type of even numbers: - <code>A = {1, 2, 3, 4, ...}</code>. - <code>B = {2, 4, 6, 8, ...}</code>.</p>
+<p>The type <code>A → B</code> means “if a number is greater than 0, then it is an even number.”</p>
+</section>
+</section>
+<section id="proofs-as-objects" class="level4" data-number="1.3.1.3">
+<h4 data-number="1.3.1.3" class="anchored" data-anchor-id="proofs-as-objects"><span class="header-section-number">1.3.1.3</span> Proofs as Objects</h4>
+<p>In MLTT, a proof of a proposition is itself a term of a specific type. So, a proof of <code>A → B</code> is a function that takes an element of type <code>A</code> and returns an element of type <code>B</code>.</p>
+<section id="example-2" class="level5" data-number="1.3.1.3.1">
+<h5 data-number="1.3.1.3.1" class="anchored" data-anchor-id="example-2"><span class="header-section-number">1.3.1.3.1</span> Example:</h5>
+<p>Let’s define a function <code>f: A → B</code> that proves “if a number is greater than 0, then it is even.” We could define <code>f</code> as follows: - <code>f(1) = 2</code>, <code>f(2) = 4</code>, <code>f(3) = 6</code>, etc.</p>
+<p>Here, <code>f</code> is a function that constructs even numbers, proving the implication <code>A → B</code>.</p>
+</section>
+</section>
+<section id="constructive-proofs" class="level4" data-number="1.3.1.4">
+<h4 data-number="1.3.1.4" class="anchored" data-anchor-id="constructive-proofs"><span class="header-section-number">1.3.1.4</span> Constructive Proofs</h4>
+<p>MLTT insists on constructive proofs. This means if we prove the existence of an object, we must provide a concrete example.</p>
+<section id="example-3" class="level5" data-number="1.3.1.4.1">
+<h5 data-number="1.3.1.4.1" class="anchored" data-anchor-id="example-3"><span class="header-section-number">1.3.1.4.1</span> Example:</h5>
+<p>To prove “there exists an even number greater than 0,” we must construct such a number: - <code>f: Nat</code> where <code>f</code> could return <code>2</code>, which is the smallest even number greater than 0.</p>
+</section>
+</section>
+</section>
+<section id="example-in-mltt-proving-implication" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="example-in-mltt-proving-implication"><span class="header-section-number">1.3.2</span> Example in MLTT (Proving Implication)</h3>
+<p>Let’s prove the implication <code>A → B</code>, where <code>A</code> and <code>B</code> are types (propositions).</p>
+<section id="steps" class="level4" data-number="1.3.2.1">
+<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="steps"><span class="header-section-number">1.3.2.1</span> Steps:</h4>
+<ol type="1">
+<li><p><strong>Assume a function <code>f: A → B</code> exists.</strong><br>
+This means that for every element of type <code>A</code>, the function <code>f</code> produces an element of type <code>B</code>.</p></li>
+<li><p><strong>Prove <code>A → B</code></strong><br>
+To prove the implication, we must show that for any element <code>a</code> of type <code>A</code>, we can derive an element <code>b</code> of type <code>B</code>.</p></li>
+<li><p><strong>Use <code>f</code> to transform elements of <code>A</code> into elements of <code>B</code>.</strong><br>
+Since <code>f</code> is of type <code>A → B</code>, it provides us with a proof. For example, if <code>a</code> is an element of type <code>A</code>, applying <code>f(a)</code> gives us an element of type <code>B</code>.</p></li>
+</ol>
+</section>
+<section id="example-4" class="level4" data-number="1.3.2.2">
+<h4 data-number="1.3.2.2" class="anchored" data-anchor-id="example-4"><span class="header-section-number">1.3.2.2</span> Example:</h4>
+<ul>
+<li>Let <code>A</code> be the type of natural numbers greater than 0.</li>
+<li>Let <code>B</code> be the type of even numbers.</li>
+<li>We assume <code>f: A → B</code> such that <code>f(a)</code> returns an even number for every <code>a &gt; 0</code>.</li>
+</ul>
+<p>The function <code>f</code> can be a function that returns the next even number greater than <code>a</code>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="the-curry-howard-lambek-isomorphism" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="the-curry-howard-lambek-isomorphism"><span class="header-section-number">1.4</span> The Curry-Howard-Lambek Isomorphism</h2>
+<section id="the-correspondence" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="the-correspondence"><span class="header-section-number">1.4.1</span> The Correspondence</h3>
+<section id="logic-type-theory" class="level4" data-number="1.4.1.1">
+<h4 data-number="1.4.1.1" class="anchored" data-anchor-id="logic-type-theory"><span class="header-section-number">1.4.1.1</span> Logic ↔︎ Type Theory</h4>
+<ul>
+<li>In logic, a proof is a sequence of steps that proves a statement.</li>
+<li>In type theory, a type represents a proposition, and a term (a function) is a proof of that type.</li>
+</ul>
+<section id="example-5" class="level5" data-number="1.4.1.1.1">
+<h5 data-number="1.4.1.1.1" class="anchored" data-anchor-id="example-5"><span class="header-section-number">1.4.1.1.1</span> Example:</h5>
+<ul>
+<li>Logical statement: <code>(A → B)</code> means “if <code>A</code> is true, then <code>B</code> is true.”</li>
+<li>Type theory: <code>(A → B)</code> is a type, and a function that takes an element of type <code>A</code> and returns an element of type <code>B</code> is a proof of that type.</li>
+</ul>
+</section>
+</section>
+<section id="type-theory-category-theory" class="level4" data-number="1.4.1.2">
+<h4 data-number="1.4.1.2" class="anchored" data-anchor-id="type-theory-category-theory"><span class="header-section-number">1.4.1.2</span> Type Theory ↔︎ Category Theory</h4>
+<ul>
+<li>In category theory, objects are types, and morphisms (arrows) are functions between types.</li>
+<li>In type theory, a term (proof) is a morphism that transforms one object (type) into another.</li>
+</ul>
+<section id="example-6" class="level5" data-number="1.4.1.2.1">
+<h5 data-number="1.4.1.2.1" class="anchored" data-anchor-id="example-6"><span class="header-section-number">1.4.1.2.1</span> Example:</h5>
+<ul>
+<li>In category theory, a morphism from object <code>A</code> to object <code>B</code> represents a function from type <code>A</code> to type <code>B</code>.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="step-by-step-example-of-the-curry-howard-lambek-isomorphism" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="step-by-step-example-of-the-curry-howard-lambek-isomorphism"><span class="header-section-number">1.4.2</span> Step-by-Step Example of the Curry-Howard-Lambek Isomorphism</h3>
+<p>Let’s walk through how a logical statement, a type in type theory, and a morphism in category theory are related.</p>
+<section id="logical-statement" class="level4" data-number="1.4.2.1">
+<h4 data-number="1.4.2.1" class="anchored" data-anchor-id="logical-statement"><span class="header-section-number">1.4.2.1</span> Logical Statement:</h4>
+<ul>
+<li>Consider the logical statement <code>(A → B)</code>, which means “if <code>A</code> is true, then <code>B</code> is true.”</li>
+</ul>
+</section>
+<section id="in-type-theory" class="level4" data-number="1.4.2.2">
+<h4 data-number="1.4.2.2" class="anchored" data-anchor-id="in-type-theory"><span class="header-section-number">1.4.2.2</span> In Type Theory:</h4>
+<ul>
+<li>The logical statement <code>A → B</code> corresponds to the type <code>A → B</code> in type theory.</li>
+<li>A function of type <code>A → B</code> is a proof of this implication. It takes an element of type <code>A</code> and returns an element of type <code>B</code>.</li>
+</ul>
+</section>
+<section id="in-category-theory" class="level4" data-number="1.4.2.3">
+<h4 data-number="1.4.2.3" class="anchored" data-anchor-id="in-category-theory"><span class="header-section-number">1.4.2.3</span> In Category Theory:</h4>
+<ul>
+<li>In category theory, the objects are types (<code>A</code>, <code>B</code>).</li>
+<li>The morphisms (arrows) between objects represent functions. So, a morphism from object <code>A</code> to object <code>B</code> represents a function that transforms elements of type <code>A</code> into elements of type <code>B</code>.</li>
+</ul>
+<p>Thus, the Curry-Howard-Lambek Isomorphism tells us that: - The logical statement <code>(A → B)</code> is represented by a type <code>A → B</code>. - A proof of this logical statement corresponds to a term (function) of type <code>A → B</code>. - In category theory, this is captured as a morphism from object <code>A</code> to object <code>B</code>.</p>
+</section>
+<section id="concrete-example" class="level4" data-number="1.4.2.4">
+<h4 data-number="1.4.2.4" class="anchored" data-anchor-id="concrete-example"><span class="header-section-number">1.4.2.4</span> Concrete Example:</h4>
+<ul>
+<li>Let <code>A = {1, 2, 3, ...}</code> and <code>B = {2, 4, 6, 8, ...}</code>.</li>
+<li>A function <code>f: A → B</code> that proves “if a number is natural, then it is even” could map each element <code>a</code> from <code>A</code> to the next even number <code>b</code> in <code>B</code>:
+<ul>
+<li><code>f(1) = 2, f(2) = 4, f(3) = 6, ...</code>.</li>
+</ul></li>
+</ul>
+<p>In category theory, the function <code>f</code> is a morphism between objects <code>A</code> and <code>B</code>. In type theory, <code>f</code> is a term of type <code>A → B</code>. In logic, <code>f</code> is a proof of the statement “if <code>A</code>, then <code>B</code>.”</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="the-nature-of-mathematics-discovery-or-invention" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="the-nature-of-mathematics-discovery-or-invention"><span class="header-section-number">1.5</span> The Nature of Mathematics: Discovery or Invention?</h2>
+<p>Mathematicians often debate whether mathematics is an <strong>invention</strong> of the human mind or a <strong>discovery</strong> of universal truths. Unlike physicists, who conduct experiments to uncover the natural laws of the universe, mathematicians engage in abstract reasoning and logical deduction. Despite this, different branches of mathematics often uncover <strong>equivalent structures</strong>, suggesting that there may be some underlying <strong>objective reality</strong> to these concepts.</p>
+<hr>
+</section>
+<section id="the-limits-of-human-cognition" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="the-limits-of-human-cognition"><span class="header-section-number">1.6</span> The Limits of Human Cognition</h2>
+<p>Humans evolved primarily for survival—identifying threats, securing food, and navigating social relationships. Our brains are excellent at dealing with concrete, immediate problems, but <strong>abstract reasoning</strong> is a more recent development. To handle complexity, we often use <strong>decomposition</strong>—breaking complex problems into simpler, manageable parts.</p>
+<p>This principle, found in everything from <strong>science</strong> to <strong>programming</strong>, is central to how we understand and solve problems.</p>
+<hr>
+</section>
+<section id="is-the-universe-fundamentally-composable" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="is-the-universe-fundamentally-composable"><span class="header-section-number">1.7</span> Is the Universe Fundamentally Composable?</h2>
+<p>In physics, scientists have long adhered to a <strong>reductionist</strong> approach—breaking matter down into smaller and smaller components. For instance, atoms are composed of protons, neutrons, and electrons, which are themselves composed of quarks. However, recent developments in physics challenge this reductionist view:</p>
+<ul>
+<li><strong>Quantum mechanics</strong> shows that particles don’t behave like simple building blocks.</li>
+<li><strong>String theory</strong> suggests that the fundamental particles are not points, but tiny vibrating strings.</li>
+</ul>
+<p>These discoveries raise a profound question: is the universe inherently <strong>composable</strong>, or is this just a human cognitive strategy?</p>
+<hr>
+</section>
+<section id="category-theory-as-a-study-of-human-thought" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="category-theory-as-a-study-of-human-thought"><span class="header-section-number">1.8</span> Category Theory as a Study of Human Thought</h2>
+<p>Category theory, often seen as a highly abstract branch of mathematics, may not be as concerned with the intrinsic nature of the universe as we might think. Instead, it provides a framework for understanding how <strong>humans reason</strong> about complexity. It describes patterns and structures that our minds impose on the problems we encounter.</p>
+<p>In this sense, category theory might be more about <strong>epistemology</strong>—how we understand the world—than <strong>ontology</strong>—what the world actually is.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./fundamentals.html" class="pagination-link">
+        <span class="nav-page-text">Fundamentals</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
